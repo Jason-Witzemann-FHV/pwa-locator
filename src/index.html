@@ -1,43 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="utf-8" />
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-    <link rel="manifest" href="./manifest.json">
+    <link rel="manifest" href="./manifest.json" />
 
     <link rel="stylesheet" href="../node_modules/leaflet/dist/leaflet.css" />
     <script src="../node_modules/leaflet/dist/leaflet.js"></script>
 
-    <script src="locator.js" type="module"></script>
-    <link rel="stylesheet" href="locator.css">
+    <script src="js/locator.js" type="module"></script>
+    <link rel="stylesheet" href="locator.css" />
 
     <title>The Locator</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- area used eg by iOS for status icons and the notch / dynamic island -->
     <div class="safe-area">
-        <div class="h-safe-area-inset-top"></div>
+      <div class="h-safe-area-inset-top"></div>
     </div>
 
     <!-- full screen map -->
     <div id="map"></div>
 
     <div class="footer">
-        <div id="location-left">
-        </div>
-        <div id="location-middle">
-            Waiting for location service ...
-        </div>
-        <input id="camera" type="image" disabled="disabled">
+      <div id="location-left"></div>
+      <div id="location-middle">Waiting for location service ...</div>
+      <input id="camera" type="image" disabled="disabled" />
     </div>
-
-</body>
-
+  </body>
 </html>

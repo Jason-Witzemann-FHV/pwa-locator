@@ -1,4 +1,7 @@
-import cameraImage from './camera.svg'
+import cameraImage from '../svg/camera.svg'
+import marker2x from 'leaflet/dist/images/marker-icon-2x.png'
+import marker from 'leaflet/dist/images/marker-icon.png'
+import markerShadow from 'leaflet/dist/images/marker-shadow.png'
 
 const COORD_FORMATTER = Intl.NumberFormat('de-DE', {
   minimumFractionDigits: 6,
@@ -32,6 +35,7 @@ var ranger
 let geolocation
 let watchId
 let currentPosition
+let cameraButton
 
 function isTouchDevice() {
   return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0
@@ -49,6 +53,24 @@ function configureMap(latLngArray) {
     attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   }).addTo(map)
   ranger = L.circle(latLngArray, { radius: 20.0 }).addTo(map)
+
+  const markerIcon = new L.Icon.Default({
+    iconUrl: marker,
+    iconRetinaUrl: marker2x,
+    shadowUrl: markerShadow,
+  })
+
+  Object.keys(localStorage).forEach((key) => {
+    const value = localStorage.getItem(key)
+    const fullCoord = key.split(',')
+    const lng = fullCoord[0]
+    const lat = fullCoord[1]
+
+    L.marker([lat, lng], { icon: markerIcon }).addTo(map).bindPopup(`
+      <div class="popup-container">
+                    <img src='${value}' width='150px' alt="Marker Image">
+                </div>`)
+  })
 }
 
 function updatePosition(position) {
@@ -56,6 +78,7 @@ function updatePosition(position) {
   const locatorMiddleDiv = document.getElementById(LOCATION_MIDDLE_ID)
 
   const coords = position.coords
+  cameraButton.disabled = false
   currentPosition = position
 
   console.debug(`got new coordinates: ${coords}`)
@@ -87,11 +110,12 @@ function updatePosition(position) {
 
 /* setup component */
 window.onload = () => {
-  const cameraButton = document.getElementById(CAMERA_INPUT_ID)
   const queryParams = new URLSearchParams(window.location.search)
+  cameraButton = document.getElementById(CAMERA_INPUT_ID)
 
   //setup UI
   cameraButton.src = cameraImage
+  cameraButton.addEventListener('click', openCamera)
 
   //init leaflet
   configureMap([47.406653, 9.744844])
@@ -104,7 +128,7 @@ window.onload = () => {
   // setup service worker
   const swDisbaled = queryParams.get('service-worker') === 'disabled'
   console.debug(`query param 'service-worker': ${queryParams.get('service-worker')}, disabled: ${swDisbaled}`)
-  if (!swDisbaled && 'serviceWorker' in navigator) {
+  if (false && !swDisbaled && 'serviceWorker' in navigator) {
     navigator.serviceWorker
       .register(new URL('serviceworker.js', import.meta.url), { type: 'module' })
       .then(() => {
@@ -131,12 +155,17 @@ window.onload = () => {
       },
       options
     )
-
-    cameraButton.disabled = false
-    cameraButton.addEventListener('click', () => {
-      location.href = `/camera.html?longitude${encodeURIComponent(
-        currentPosition.coords.longitude
-      )}&latitude${encodeURIComponent(currentPosition.coords.latitude)}`
-    })
   }
+}
+
+window.onbeforeunload = () => {
+  if (watchId) {
+    geolocation.clearWatch(watchId)
+  }
+}
+
+function openCamera() {
+  location.href = `/camera.html?lng=${encodeURIComponent(currentPosition.coords.longitude)}&lat=${encodeURIComponent(
+    currentPosition.coords.latitude
+  )}`
 }

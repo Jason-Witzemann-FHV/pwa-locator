@@ -1,7 +1,8 @@
 {
     "name": "locator",
     "source": [
-        "src/index.html"
+        "src/index.html",
+        "src/camera.html"
     ],
     "scripts": {
         "start": "parcel",

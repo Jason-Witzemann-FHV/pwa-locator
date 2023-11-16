@@ -1,90 +1,94 @@
 body {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 html,
 body {
-    height: 100vh;
-    width: 100vw;
+  height: 100vh;
+  width: 100vw;
 }
 
 div.safe-area {
-    position: sticky;
-    top: 0px;
-    z-index: 2;
+  position: sticky;
+  top: 0px;
+  z-index: 2;
 }
 
 div.h-safe-area-inset-top {
-    height: env(safe-area-inset-top);
-    background-color: #00000044;
+  height: env(safe-area-inset-top);
+  background-color: #00000044;
 }
 
 div#map {
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    height: 100vh;
-    width: 100vw;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  height: 100vh;
+  width: 100vw;
 }
 
 div.footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 4px;
-    padding-bottom: 12px;
-    z-index: 2;
-    position: fixed;
-    bottom: 0px;
-    width: 100vw;
-    background-color: #00000077;
-    font-size: small;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 4px;
+  padding-bottom: 12px;
+  z-index: 2;
+  position: fixed;
+  bottom: 0px;
+  width: 100vw;
+  background-color: #00000077;
+  font-size: small;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
 }
 
-div.footer>div {
-    flex-basis: 40%;
+div.footer > div {
+  flex-basis: 40%;
 }
 
 dl {
-    display: flex;
-    flex-flow: row;
-    flex-wrap: wrap;
-    /* set the container width*/
-    overflow: visible;
-    font-size: small;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  /* set the container width*/
+  overflow: visible;
+  font-size: small;
 }
 
 dl dt {
-    flex: 0 0 30%;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    text-align: right;
-    margin-right: 4px;
-    color: #CCC;
+  flex: 0 0 30%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: right;
+  margin-right: 4px;
+  color: #ccc;
 }
 
 dl dd {
-    flex: 0 0 60%;
-    margin-left: auto;
-    text-align: left;
-    text-overflow: ellipsis;
-    overflow: hidden;
+  flex: 0 0 60%;
+  margin-left: auto;
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 input#camera {
-    width: 48px;
-    height: 48px;
-    background-color: #3388FFCC;
-    border-radius: 50%;
-    border: 4px solid #3388FFFF;
-    padding: 8px;
-    margin-left: auto;
-    margin-right: 24px;
+  width: 48px;
+  height: 48px;
+  background-color: #3388ffcc;
+  border-radius: 50%;
+  border: 4px solid #3388ffff;
+  padding: 8px;
+  margin-left: auto;
+  margin-right: 24px;
 }
 
 input#camera:disabled {
-    filter: opacity(0.50);
+  filter: opacity(0.5);
+}
+
+.popup-container {
+  text-align: center;
 }

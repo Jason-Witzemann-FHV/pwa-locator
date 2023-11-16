@@ -2,12 +2,34 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <script src="camera.js" type="module"></script>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link rel="manifest" href="./manifest.json" />
+
+    <script src="js/camera.js" type="module"></script>
+    <link rel="stylesheet" href="camera.css" />
   </head>
 
   <body>
-    <video id="video">Video stream not available.</video>
-    <canvas id="canvas"></canvas>
+    <video id="video"></video>
     <img id="photo" alt="The screen capture will appear in this box." />
+
+    <div class="footer">
+      <div class="footerInput">
+        <input id="savePhoto" type="image" alt="A save icon" disabled="disabled" />
+      </div>
+      <div class="footerInput">
+        <input id="takePhoto" type="image" alt="A pause or play icon" disabled="disabled" />
+      </div>
+      <div class="footerInput">
+        <input id="return" type="image" alt="A x circle icon" />
+      </div>
+    </div>
   </body>
 </html>
