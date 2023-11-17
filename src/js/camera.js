@@ -80,10 +80,10 @@ function takePhoto() {
 
   const { longitude, latitude } = getCoordParams()
   const photoText = `${longitude},${latitude}`
-  const textFont = '18px Arial'
+  const textFontSize = 18
 
-  drawRect(context, textFont, photoText, width, height)
-  drawText(context, textFont, photoText, width, height)
+  drawRect(context, textFontSize, photoText, width, height)
+  drawText(context, textFontSize, photoText, width, height)
 
   canvas.convertToBlob({ type: 'image/jpeg' }).then((blob) => {
     photoImgBlob = blob
@@ -109,7 +109,7 @@ function drawRect(context, textFont, photoText, width, height) {
   context.fillStyle = 'rgba(200, 200, 200, 0.5)'
 
   const rectX = width / 2 - textWidth
-  const rectY = height - textFont * 2
+  const rectY = height - textFont - 8
   const rectwidth = textWidth * 2
   const rectHeight = textFont + 5
 
@@ -119,7 +119,7 @@ function drawRect(context, textFont, photoText, width, height) {
 function drawText(context, textFont, photoText, width, height) {
   const textWidth = context.measureText(photoText).width
 
-  context.font = textFont
+  context.font = `${textFont}px Arial`
   context.fillStyle = 'rgb(0,0,0)'
-  context.fillText(photoText, (width - textWidth) / 2, height - textFont - 2)
+  context.fillText(photoText, width / 2 - textWidth + 10, height - 10, textWidth * 2)
 }
