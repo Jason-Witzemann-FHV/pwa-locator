@@ -106,12 +106,12 @@ function takePhoto() {
 
 function drawRect(context, textFont, photoText, width, height) {
   const textWidth = context.measureText(photoText).width
-  context.fillStyle = 'rgba(200, 200, 200, 0.5)'
+  context.fillStyle = 'rgba(255, 255, 255, 0.5)'
 
   const rectX = width / 2 - textWidth
-  const rectY = height - textFont - 8
+  const rectY = height - textFont - 15
   const rectwidth = textWidth * 2
-  const rectHeight = textFont + 5
+  const rectHeight = textFont + 15
 
   context.fillRect(rectX, rectY, rectwidth, rectHeight)
 }
@@ -121,5 +121,10 @@ function drawText(context, textFont, photoText, width, height) {
 
   context.font = `${textFont}px Arial`
   context.fillStyle = 'rgb(0,0,0)'
-  context.fillText(photoText, width / 2 - textWidth + 10, height - 10, textWidth * 2)
+
+  const textX = width / 2 - textWidth + 10
+  const textY = height - 10
+  const maxTextWidth = textWidth * 2
+
+  context.fillText(photoText, textX, textY, maxTextWidth)
 }

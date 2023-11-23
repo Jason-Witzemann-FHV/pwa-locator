@@ -128,7 +128,7 @@ window.onload = () => {
   // setup service worker
   const swDisbaled = queryParams.get('service-worker') === 'disabled'
   console.debug(`query param 'service-worker': ${queryParams.get('service-worker')}, disabled: ${swDisbaled}`)
-  if (false && !swDisbaled && 'serviceWorker' in navigator) {
+  if (!swDisbaled && 'serviceWorker' in navigator) {
     navigator.serviceWorker
       .register(new URL('serviceworker.js', import.meta.url), { type: 'module' })
       .then(() => {
